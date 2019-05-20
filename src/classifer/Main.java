@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main extends Application {
 
     @Override
@@ -21,6 +25,12 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         launch(args);
+        try {
+            Process p = Runtime.getRuntime().exec("python /c start python C:\\Users\\Ayesh\\abc.py" );
+            System.out.println(new BufferedReader(new InputStreamReader(p.getInputStream())));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         /*System.out.println(BCrypt.hashpw("Admin123",BCrypt.gensalt()));
         System.out.println(BCrypt.hashpw("kamal123",BCrypt.gensalt()));
         System.out.println(BCrypt.hashpw("indika123",BCrypt.gensalt()));*/

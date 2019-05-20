@@ -17,6 +17,7 @@ public class loginModel {
             ex.printStackTrace();
         }
         if (this.connection == null){
+            System.out.println("Database Connection Error");
             System.exit(1);
         }
     }
@@ -52,20 +53,21 @@ public class loginModel {
         return null;
     }*/
 
-    public boolean isLogin(String user, String pass) throws SQLException {
+    public boolean isLogin(String user, String pass, String type) throws SQLException {
         PreparedStatement pr = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM loginDetails WHERE userName = ?";
+        String sql = "SELECT * FROM loginDetails WHERE userName = ? and userType = ?";
 
 
         try{
             pr = this.connection.prepareStatement(sql);
             pr.setString(1,user);
-            //pr.setString(2,pass);
+            pr.setString(2,type);
             rs = pr.executeQuery();
+
+            //username should be unique
             boolean pswdchck = BCrypt.checkpw(pass,rs.getString("password"));
-            boolean boo1;
 
             if(rs.next() && pswdchck) {
                 return true;

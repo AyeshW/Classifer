@@ -2,15 +2,13 @@ package logginApp;
 
 import admin.adminController;
 import client.clientController;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -28,7 +26,7 @@ public class loginController implements Initializable {
     private PasswordField password;
 
     @FXML
-    private TextField usertype;
+    private ComboBox<userType> usertype;
 
     @FXML
     private Button loginbutton;
@@ -44,6 +42,8 @@ public class loginController implements Initializable {
         else{
             System.out.println("Database is not Connected");
         }
+
+        this.usertype.setItems(FXCollections.observableArrayList(userType.values()));
     }
 
     public void adminLogin(){
@@ -74,7 +74,7 @@ public class loginController implements Initializable {
 
             Scene scene = new Scene(root);
             clientStage.setScene(scene);
-            clientStage.setTitle("Classifer | Admin Dashboard");
+            clientStage.setTitle("Classifer | Client Dashboard");
             clientStage.show();
         }
         catch (IOException ex){
@@ -86,27 +86,28 @@ public class loginController implements Initializable {
     @FXML
     public void login(ActionEvent event) throws SQLException {
         try {
+            if(this.usertype.getValue() != null) {
+                userType usertype = this.usertype.getValue();
+                if (this.lgModel.isLogin(this.username.getText(), this.password.getText(), usertype.toString())) {
+                    Stage stage = (Stage) this.loginbutton.getScene().getWindow();
+                    stage.close();
 
-            if (this.lgModel.isLogin(this.username.getText(), this.password.getText())) {
-                Stage stage = (Stage) this.loginbutton.getScene().getWindow();
-                stage.close();
+                    switch (usertype.toString()) {
+                        case "Admin":
+                            adminLogin();
+                            break;
+                        case "Client":
+                            clientLogin();
+                            break;
+                        default:
+                            break;
+                        }
 
-                //String userType = this.lgModel.getUserType(this.username.getText());
-                switch (this.usertype.getText()) {
-                    case "Admin":
-                        adminLogin();
-                        break;
-                    case "Client":
-                        clientLogin();
-                        break;
-                    default:
-                        System.out.println("Error in user type");
-                        clientLogin();
-                        break;
+                } else {
+                    this.loginStatus.setText("Invalid User Name/Password/\n     User Type Combination");
                 }
-
-            } else {
-                this.loginStatus.setText("Invalid User Name or Password");
+            }else{
+                this.loginStatus.setText("Select the User Type");
             }
         }catch (Exception localException){
             localException.printStackTrace();
