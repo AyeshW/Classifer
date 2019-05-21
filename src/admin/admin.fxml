@@ -97,7 +97,7 @@
                         <ScrollBar layoutX="1336.0" layoutY="-1.0" opacity="0.5" orientation="VERTICAL" prefHeight="672.0" prefWidth="14.0" />
                         <VBox layoutX="1144.0" prefHeight="670.0" prefWidth="192.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #0413e8;" text="Select Files" textFill="#a4b0f2">
+                              <Button fx:id="filechooser" mnemonicParsing="false" onAction="#selectFiles" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #0413e8;" text="Select Files" textFill="#a4b0f2">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>

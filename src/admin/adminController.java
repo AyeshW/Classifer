@@ -1,5 +1,6 @@
 package admin;
 
+import client.clientController;
 import dbUtil.dbConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +20,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
-public class adminController implements Initializable {
+public class adminController extends clientController implements Initializable {
 
     @FXML
     private TextField ID;
