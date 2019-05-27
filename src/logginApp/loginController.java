@@ -82,7 +82,6 @@ public class loginController implements Initializable {
         }
     }
 
-
     @FXML
     public void login(ActionEvent event) throws SQLException {
         try {

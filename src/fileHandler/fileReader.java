@@ -4,12 +4,13 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
+import jdk.nashorn.internal.runtime.JSONFunctions;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class fileReader implements Initializable {
     @Override
@@ -32,41 +33,48 @@ public class fileReader implements Initializable {
         return extension;
 
     }
-    public ArrayList<String> readFiles(List<File> files) throws IOException {
+    public JSONArray readFiles(List<File> files) throws IOException {
 
-        ArrayList<String> texts_to_analyze = new ArrayList<String>();
-
+        JSONArray path_text = new JSONArray();
+        if(files != null){
             for (File file : files) {
+                String file_path = file.getAbsolutePath();
                 if (this.getFileExtension(file).equals(".txt")) {
 
                     String content = "";
                     String temp = null;
                     try (BufferedReader br =
-                                 new BufferedReader(new FileReader(file.getAbsolutePath()))) {
+                                 new BufferedReader(new FileReader(file_path))) {
                         while ((temp = br.readLine()) != null) {
                             content = content + temp + ".";
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    texts_to_analyze.add(content);
-                    System.out.println(content);
-                }
-                else if(this.getFileExtension(file).equals(".pdf")){
+                    JSONObject obj = new JSONObject();
+                    obj.put("path",file_path);
+                    obj.put("text",content);
+                    path_text.put(obj);
+
+                } else if (this.getFileExtension(file).equals(".pdf")) {
                     PDDocument document = PDDocument.load(file);
 
                     PDFTextStripper pdfStripper = new PDFTextStripper();
 
                     //extracting text from PDF document
-                    String text = pdfStripper.getText(document);
-                    System.out.println(text);
-                    texts_to_analyze.add(text);
+                    String content = pdfStripper.getText(document);
+                    JSONObject obj = new JSONObject();
+                    obj.put("path",file_path);
+                    obj.put("text",content);
+                    path_text.put(obj);
+
                     document.close();
-                }
-                else{
+                } else {
                     System.out.println("Error: Non 'text' or 'pdf' file found");
                 }
             }
-        return texts_to_analyze;
+        }
+        System.out.println(path_text.toString());
+        return path_text;
     }
 }

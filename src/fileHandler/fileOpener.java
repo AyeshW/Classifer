@@ -24,7 +24,6 @@ public class fileOpener implements Initializable {
         fileChooser.setTitle("Open text/pdf files");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF/Text Files","*.pdf","*.txt"));
         this.selectedFiles = fileChooser.showOpenMultipleDialog(window);
-
         return this.selectedFiles;
     }
 }

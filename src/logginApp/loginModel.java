@@ -26,32 +26,6 @@ public class loginModel {
         return this.connection != null;
     }
 
-    /*public String getUserType(String user) throws SQLException{
-        PreparedStatement pr = null;
-        ResultSet rs = null;
-        String sql = "SELECT userType FROM loginDetais WHERE userName = ?";
-
-        try {
-            pr = this.connection.prepareStatement(sql);
-            pr.setString(1, user);
-            rs = pr.executeQuery();
-
-            boolean bool2;
-            if (rs.next()){
-                return String.valueOf(rs);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            {
-                pr.close();
-                rs.close();
-            }
-        }
-        return null;
-    }*/
 
     public boolean isLogin(String user, String pass, String type) throws SQLException {
         PreparedStatement pr = null;
