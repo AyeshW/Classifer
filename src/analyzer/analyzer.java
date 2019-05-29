@@ -4,6 +4,7 @@ import client.clientController;
 import fileHandler.fileReader;
 import javafx.fxml.Initializable;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +18,7 @@ public class analyzer implements Initializable {
     }
     private fileReader reader;
     private JSONArray path_text = null;
+    private httpConnection http;
 
     public analyzer(){
         this.reader  = new fileReader();
@@ -31,7 +33,17 @@ public class analyzer implements Initializable {
         return path_text;
     }
 
-    public void analyze(){
+    public JSONArray analyze(String classifier) {
         this.readToAnalyze();
+        this.http = new httpConnection();
+        JSONArray jarray = null;
+        try {
+            jarray = http.readWrite(classifier, this.path_text);
+            System.out.println("Analyzer");
+            System.out.println(jarray.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jarray;
     }
 }

@@ -18,7 +18,7 @@ public class fileReader implements Initializable {
         System.out.println("Initialized a file reader");
     }
 
-    private String getFileExtension(File file) {
+    public String getFileExtension(File file) {
         String extension = "";
 
         try {
@@ -74,7 +74,7 @@ public class fileReader implements Initializable {
                 }
             }
         }
-        System.out.println(path_text.toString());
+        //System.out.println(path_text.toString());
         return path_text;
     }
 }

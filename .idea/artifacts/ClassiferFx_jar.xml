@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ClassiferFx:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ClassiferFx_jar</output-path>
+    <root id="archive" name="ClassiferFx.jar">
+      <element id="module-output" name="ClassiferFx" />
+      <element id="extracted-dir" path="C:/PDFBox/pdfbox-app-2.0.15 .jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/PDFBox/preflight-app-2.0.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/sqlite/sqlite-jdbc-3.23.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/setups/jbcrypt-0.3m.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/setups/jar_files/json-20180813.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
