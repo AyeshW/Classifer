@@ -76,7 +76,7 @@ public class adminController extends clientController implements Initializable {
         this.connection = dbConnection.getConnection();
     }
 
-    private ObservableList<userData> getUserData() {
+    public ObservableList<userData> getUserData() {
         ObservableList<userData> data = null;
         String sql = "SELECT * FROM userDetails";
         try {

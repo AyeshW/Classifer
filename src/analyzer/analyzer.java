@@ -39,7 +39,6 @@ public class analyzer implements Initializable {
         JSONArray jarray = null;
         try {
             jarray = http.readWrite(classifier, this.path_text);
-            System.out.println("Analyzer");
             System.out.println(jarray.toString());
         } catch (IOException e) {
             e.printStackTrace();

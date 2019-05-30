@@ -52,6 +52,7 @@ public class fileReader implements Initializable {
                         e.printStackTrace();
                     }
                     JSONObject obj = new JSONObject();
+                    System.out.println(content);
                     obj.put("path",file_path);
                     obj.put("text",content);
                     path_text.put(obj);
@@ -64,6 +65,7 @@ public class fileReader implements Initializable {
                     //extracting text from PDF document
                     String content = pdfStripper.getText(document);
                     JSONObject obj = new JSONObject();
+                    System.out.println(content);
                     obj.put("path",file_path);
                     obj.put("text",content);
                     path_text.put(obj);
