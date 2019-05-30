@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class fileOpenerTest {
 
-    /*@Test
+    @Test
     void multipleFileChooserTest() {
         //File file = new File("C:\\Users\\Ayesh\\Desktop\\example.docx");
         File file1 = new File("C:\\Users\\Ayesh\\Desktop\\sample\\example.txt");
@@ -139,6 +139,6 @@ class fileOpenerTest {
         files.add(file2);
 
         fileOpener opener = new fileOpener();
-        List<File> result = opener.multipleFileChooser();
-    }*/
+        //List<File> result = opener.multipleFileChooser();
+    }
 }
