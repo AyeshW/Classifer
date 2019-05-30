@@ -5,10 +5,14 @@ import fileHandler.fileOpener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -146,11 +150,12 @@ public class clientController implements Initializable {
 
     }
 
-    public void alertAnalyzeWarning(){
-        Alert alert = new Alert(Alert.AlertType.WARNING, "Select Files Before Analyze", ButtonType.CLOSE);
-        //Optional<ButtonType> resu
+    //Alert for any warning
+    public void warningAlert(String message){
+        Alert alert = new Alert(Alert.AlertType.WARNING, message, ButtonType.CLOSE);
         alert.showAndWait();
     }
+
     //Common Analyze methode for both Client and Admin
     public void clientAnalyze(){
         if(selectedFiles != null) {
@@ -166,7 +171,7 @@ public class clientController implements Initializable {
             this.showResults();
         }
         else{
-            alertAnalyzeWarning();
+            warningAlert("Select Files Before Analyze");
         }
     }
 
@@ -266,5 +271,22 @@ public class clientController implements Initializable {
         }
         this.progress.setVisible(false);
 
+    }
+
+    public void changeClientPassword(){
+        try {
+            Stage settingStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            Pane root = loader.load(getClass().getResource("/setting/setting.fxml").openStream());
+
+            Scene scene = new Scene(root,300,400);
+            settingStage.setScene(scene);
+            settingStage.setTitle("Classifer | Settings");
+            settingStage.setResizable(false);
+            settingStage.show();
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
 }

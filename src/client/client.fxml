@@ -299,6 +299,11 @@
                   <Insets />
                </HBox.margin>
             </ProgressIndicator>
+            <Button mnemonicParsing="false" onAction="#changeClientPassword" prefHeight="34.0" prefWidth="110.0" text="Change Password">
+               <HBox.margin>
+                  <Insets left="300.0" top="20.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
    </children>

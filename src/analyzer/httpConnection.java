@@ -1,12 +1,8 @@
 package analyzer;
 
-import org.apache.pdfbox.io.IOUtils;
 import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class httpConnection {
@@ -31,17 +27,12 @@ public class httpConnection {
         conn.setDoInput(true);
         conn.setRequestMethod("POST");
 
-        //DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-        //os.writeBytes(json.toString());
-
         //Sending the request
         OutputStream os = conn.getOutputStream();
         os.write(json.toString().getBytes("UTF-8"));
         os.close();
 
         //Reading the response
-        //InputStream in = new BufferedInputStream(conn.getInputStream());
-        //String result = IOUtil
         InputStream is = conn.getInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;

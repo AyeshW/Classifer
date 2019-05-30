@@ -22,8 +22,10 @@ public class loginController implements Initializable {
     @FXML
     private TextField username;
 
+
     @FXML
     private PasswordField password;
+
 
     @FXML
     private ComboBox<userType> usertype;
@@ -87,7 +89,7 @@ public class loginController implements Initializable {
         try {
             if(this.usertype.getValue() != null) {
                 userType usertype = this.usertype.getValue();
-                if (this.lgModel.isLogin(this.username.getText(), this.password.getText(), usertype.toString())) {
+                if (this.lgModel.isLogin(username.getText(), password.getText(), usertype.toString())) {
                     Stage stage = (Stage) this.loginbutton.getScene().getWindow();
                     stage.close();
 

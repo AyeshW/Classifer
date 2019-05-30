@@ -11,11 +11,7 @@ public class loginModel {
     private Connection connection;
 
     public loginModel(){
-        try{
-            this.connection = dbConnection.getConnection();
-        }catch (SQLException ex){
-            ex.printStackTrace();
-        }
+        this.connection = dbConnection.getConnection();
         if (this.connection == null){
             System.out.println("Database Connection Error");
             System.exit(1);
