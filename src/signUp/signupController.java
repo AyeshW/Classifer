@@ -46,23 +46,53 @@ public class signupController implements Initializable {
     private Button registerButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     public void register(ActionEvent event){
-        this.sgModel.registerAdmin(this.username.getText(), this.password.getText(), this.confpswd.getText(), this.productKey.getText());
+        boolean success = this.sgModel.registerAdmin(this.username.getText(), this.password.getText(), this.confpswd.getText(), this.productKey.getText());
+        if(success) {
+            this.back();
+        }
+    }
+
+    @FXML
+    public void back(){
         try {
+            Stage currentStage = (Stage) registerButton.getScene().getWindow();
+            currentStage.close();
+
             Stage loginStage = new Stage();
             FXMLLoader loader = new FXMLLoader();
             Pane root = loader.load(getClass().getResource("/logginApp/login.fxml").openStream());
 
-
-            Scene scene = new Scene(root,630, 463);
+            Scene scene = new Scene(root, 630, 463);
             loginStage.setScene(scene);
             loginStage.setResizable(false);
             loginStage.setTitle("Classifer | Login");
             loginStage.show();
-        }
-        catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
+    /*public void back(){
+        try {
+            Stage currentStage = (Stage) registerButton.getScene().getWindow();
+            currentStage.close();
+
+            Stage loginStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            Pane root = loader.load(getClass().getResource("/logginApp/login.fxml").openStream());
+
+            Scene scene = new Scene(root, 630, 463);
+            loginStage.setScene(scene);
+            loginStage.setResizable(false);
+            loginStage.setTitle("Classifer | Login");
+            loginStage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }*/
 
 }

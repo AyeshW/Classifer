@@ -121,6 +121,9 @@ public class loginController implements Initializable {
     @FXML
     public void signup(ActionEvent event){
         try {
+            Stage currentStage = (Stage) signupbutton.getScene().getWindow();
+            currentStage.close();
+
             Stage signupStage = new Stage();
             FXMLLoader loader = new FXMLLoader();
             Pane root = loader.load(getClass().getResource("/signUp/signup.fxml").openStream());

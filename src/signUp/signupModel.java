@@ -66,8 +66,8 @@ public class signupModel {
         return checkKey;
     }
 
-    public void registerAdmin(String username, String password, String confpass, String productkey){
-
+    public boolean registerAdmin(String username, String password, String confpass, String productkey){
+        boolean success = false;
         if(this.checkProductKey(productkey)){
             if(!checkUsername(username)){
                 if(password.equals(confpass)) {
@@ -88,6 +88,7 @@ public class signupModel {
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully Added", ButtonType.CLOSE);
                         alert.showAndWait();
+                        success = true;
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -107,6 +108,6 @@ public class signupModel {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Product Key Entered", ButtonType.CLOSE);
             alert.showAndWait();
         }
-
+        return success;
     }
 }
