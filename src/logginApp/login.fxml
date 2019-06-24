@@ -45,7 +45,7 @@
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <Button id="login" fx:id="signupbutton" layoutX="171.0" layoutY="250.0" mnemonicParsing="false" opacity="0.94" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #244e9e;" text="Sign Up" textFill="#7599eb">
+            <Button id="login" fx:id="signupbutton" layoutX="171.0" layoutY="250.0" mnemonicParsing="false" onAction="#signup" opacity="0.94" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #244e9e;" text="Sign Up" textFill="#7599eb">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

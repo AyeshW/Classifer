@@ -34,6 +34,9 @@ public class loginController implements Initializable {
     private Button loginbutton;
 
     @FXML
+    private Button signupbutton;
+
+    @FXML
     private Label loginStatus;
 
     @Override
@@ -112,6 +115,24 @@ public class loginController implements Initializable {
             }
         }catch (Exception localException){
             localException.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void signup(ActionEvent event){
+        try {
+            Stage signupStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            Pane root = loader.load(getClass().getResource("/signUp/signup.fxml").openStream());
+
+
+            Scene scene = new Scene(root,630, 463);
+            signupStage.setScene(scene);
+            signupStage.setTitle("Classifer | Sign Up");
+            signupStage.show();
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
         }
     }
 
